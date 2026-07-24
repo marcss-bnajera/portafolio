@@ -1,17 +1,29 @@
+import Hero from "../features/profile/components/Hero"; 
+import Technologies from "../features/profile/components/Technologies";
+import LiquidChrome from "../shared/components/ui/LiquidChrome";
 import Navbar from "../shared/components/Navbar";
-import Hero from "../features/profile/components/Hero";
 
 function App() {
   return (
-    <div className="bg-slate-950 min-h-screen font-sans selection:bg-cyan-500/30">
-      {/* Componente Compartido */}
-      <Navbar />
+    <div className="relative w-full min-h-screen bg-slate-950 text-white">
       
-      {/* Secciones Principales */}
-      <main>
+      {/* FONDO FIX FIJO A TODA PANTALLA */}
+      <div className="fixed inset-0 w-full h-screen z-0 opacity-40 pointer-events-none">
+        <LiquidChrome
+          baseColor={[0.02, 0.08, 0.15]}
+          speed={0.2}
+          amplitude={0.3}
+          interactive={false}
+        />
+      </div>
+
+      {/* SECCIONES SCROLLEABLES */}
+      <main className="relative z-10 w-full">
+        <Navbar />
         <Hero />
-        {/* Aquí irán más adelante tus secciones de <Projects /> y <Contact /> */}
+        <Technologies />
       </main>
+
     </div>
   );
 }
