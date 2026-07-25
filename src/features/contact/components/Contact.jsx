@@ -1,0 +1,93 @@
+import BlurText from "../../../shared/components/ui/BlurText";
+import AnimatedContent from "../../../shared/components/ui/AnimatedContent";
+import FadeContent from "../../../shared/components/ui/FadeContent";
+import StarBorder from "../../../shared/components/ui/StarBorder";
+import { FaEnvelope, FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
+
+function Contact() {
+  const contactLinks = [
+    {
+      name: "Email",
+      href: "mailto:marcosbeteta07@gmail.com",
+      icon: FaEnvelope,
+      label: "marcosbeteta07@gmail.com",
+      color: "hover:text-cyan-400 hover:border-cyan-400/50",
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/marcss-bnajera",
+      icon: FaGithub,
+      label: "marcss-bnajera",
+      color: "hover:text-white hover:border-white/50",
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/marcos-beteta-60b7b4424",
+      icon: FaLinkedin,
+      label: "Marcos Beteta",
+      color: "hover:text-blue-400 hover:border-blue-400/50",
+    },
+  ];
+
+  return (
+    <section id="contact" className="w-full text-white min-h-screen flex items-center justify-center py-20 px-6">
+      <div className="max-w-4xl w-full">
+
+        {/* TÍTULO DE LA SECCIÓN */}
+        <div className="text-center mb-16">
+          <BlurText
+            text="Contacto"
+            className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4"
+            animateBy="words"
+            direction="top"
+            delay={200}
+          />
+          <FadeContent delay={400} blur>
+            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+              ¿Tienes un proyecto en mente o quieres colaborar? No dudes en contactarme.
+            </p>
+          </FadeContent>
+        </div>
+
+        {/* LINKS DE CONTACTO */}
+        <div className="space-y-4 mb-12">
+          {contactLinks.map((link, index) => {
+            const IconComponent = link.icon;
+            return (
+              <AnimatedContent key={link.name} distance={60} direction="horizontal" delay={index * 0.15}>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  className={`flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur-md text-slate-300 transition-all duration-300 ${link.color} hover:shadow-lg`}
+                >
+                  <div className="p-3 rounded-xl bg-slate-800/60 border border-white/10">
+                    <IconComponent className="text-xl" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">{link.name}</p>
+                    <p className="text-sm text-slate-400">{link.label}</p>
+                  </div>
+                </a>
+              </AnimatedContent>
+            );
+          })}
+        </div>
+
+        {/* BOTÓN DESCARGAR CV */}
+        <FadeContent delay={600} className="flex justify-center">
+          {/* TIP: Cambia la ruta del CV por la real */}
+          <StarBorder as="a" href="/cv-marcos-beteta.pdf" download className="no-underline">
+            <span className="flex items-center gap-2">
+              <FaFileDownload className="text-lg" />
+              Descargar CV
+            </span>
+          </StarBorder>
+        </FadeContent>
+
+      </div>
+    </section>
+  );
+}
+
+export default Contact;

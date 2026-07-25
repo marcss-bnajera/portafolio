@@ -16,7 +16,15 @@ export const LiquidChrome = ({
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    const renderer = new Renderer({ antialias: true });
+    let renderer;
+    let animationId;
+
+    try {
+      renderer = new Renderer({ antialias: true });
+    } catch {
+      return;
+    }
+
     const gl = renderer.gl;
     gl.clearColor(1, 1, 1, 1);
 
@@ -75,21 +83,27 @@ export const LiquidChrome = ({
     `;
 
     const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uResolution: {
-          value: new Float32Array([gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height])
-        },
-        uBaseColor: { value: new Float32Array(baseColor) },
-        uAmplitude: { value: amplitude },
-        uFrequencyX: { value: frequencyX },
-        uFrequencyY: { value: frequencyY },
-        uMouse: { value: new Float32Array([0.5, 0.5]) }
-      }
-    });
+    let program;
+    try {
+      program = new Program(gl, {
+        vertex: vertexShader,
+        fragment: fragmentShader,
+        uniforms: {
+          uTime: { value: 0 },
+          uResolution: {
+            value: new Float32Array([gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height])
+          },
+          uBaseColor: { value: new Float32Array(baseColor) },
+          uAmplitude: { value: amplitude },
+          uFrequencyX: { value: frequencyX },
+          uFrequencyY: { value: frequencyY },
+          uMouse: { value: new Float32Array([0.5, 0.5]) }
+        }
+      });
+    } catch {
+      return;
+    }
+
     const mesh = new Mesh(gl, { geometry, program });
 
     function resize() {
@@ -102,9 +116,9 @@ export const LiquidChrome = ({
       resUniform[1] = gl.canvas.height;
       resUniform[2] = gl.canvas.width / gl.canvas.height;
     }
-    
+
     window.addEventListener('resize', resize);
-    
+
     function handleMouseMove(event) {
       const x = event.clientX / window.innerWidth;
       const y = 1 - (event.clientY / window.innerHeight);
@@ -119,7 +133,6 @@ export const LiquidChrome = ({
 
     requestAnimationFrame(resize);
 
-    let animationId;
     function update(t) {
       animationId = requestAnimationFrame(update);
       program.uniforms.uTime.value = t * 0.001 * speed;
@@ -138,7 +151,6 @@ export const LiquidChrome = ({
       if (gl.canvas.parentElement) {
         gl.canvas.parentElement.removeChild(gl.canvas);
       }
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, [baseColor, speed, amplitude, frequencyX, frequencyY, interactive]);
 

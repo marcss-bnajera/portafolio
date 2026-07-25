@@ -1,5 +1,8 @@
-import Hero from "../features/profile/components/Hero"; 
+import ProfileSection from "../features/profile/components/ProfileSection";
 import Technologies from "../features/profile/components/Technologies";
+import Projects from "../features/projects/components/Projects";
+import Contact from "../features/contact/components/Contact";
+import Footer from "../shared/components/Footer";
 import LiquidChrome from "../shared/components/ui/LiquidChrome";
 import Navbar from "../shared/components/Navbar";
 
@@ -20,8 +23,11 @@ function App() {
       {/* SECCIONES SCROLLEABLES */}
       <main className="relative z-10 w-full">
         <Navbar />
-        <Hero />
+        <ProfileSection />
         <Technologies />
+        <Projects />
+        <Contact />
+        <Footer />
       </main>
 
     </div>
