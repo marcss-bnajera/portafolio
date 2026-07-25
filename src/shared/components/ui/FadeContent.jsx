@@ -24,7 +24,7 @@ const FadeContent = ({
 
     gsap.set(el, {
       autoAlpha: initialOpacity,
-      filter: blur ? 'blur(10px)' : 'blur(0px)',
+      filter: initialOpacity >= 1 ? 'blur(0px)' : (blur ? 'blur(10px)' : 'blur(0px)'),
       willChange: 'opacity, filter'
     });
 
