@@ -47,7 +47,7 @@ function ProfileSection() {
               direction="top"
               delay={200}
             />
-            <FadeContent delay={400} blur>
+            <FadeContent delay={400} blur initialOpacity={1}>
               <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
                 {t("about.subtitle")}
               </p>

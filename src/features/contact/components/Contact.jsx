@@ -47,7 +47,7 @@ function Contact() {
             direction="top"
             delay={200}
           />
-          <FadeContent delay={400} blur>
+          <FadeContent delay={400} blur initialOpacity={1}>
             <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
               {t("contact.subtitle")}
             </p>
@@ -84,7 +84,7 @@ function Contact() {
           })}
         </div>
 
-        <FadeContent delay={600} className="flex justify-center mb-16">
+        <FadeContent delay={600} initialOpacity={1} className="flex justify-center mb-16">
           <StarBorder as="a" href="/cv-marcos-beteta.pdf" download className="no-underline">
             <span className="flex items-center gap-2">
               <FaFileDownload className="text-lg" />

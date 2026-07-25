@@ -20,7 +20,7 @@ function Projects() {
             direction="top"
             delay={200}
           />
-          <FadeContent delay={400} blur>
+          <FadeContent delay={400} blur initialOpacity={1}>
             <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
               {t("projects.subtitle")}
             </p>
@@ -40,7 +40,7 @@ function Projects() {
           ))}
         </div>
 
-        <FadeContent delay={600} className="mt-12 text-center">
+        <FadeContent delay={600} initialOpacity={1} className="mt-12 text-center">
           <p className="text-slate-400 dark:text-slate-500 text-sm">
             {t("projects.comingSoon")}
           </p>
