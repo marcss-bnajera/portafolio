@@ -1,7 +1,11 @@
 import ShinyText from "./ui/ShinyText";
+import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
+  const { t } = useLanguage();
+  const { dark } = useTheme();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -11,44 +15,49 @@ function Footer() {
   ];
 
   const navLinks = [
-    { name: "Sobre mí", href: "#about" },
-    { name: "Proyectos", href: "#projects" },
-    { name: "Contacto", href: "#contact" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.contact"), href: "#contact" },
   ];
 
   return (
-    <footer className="relative w-full border-t border-white/10 bg-slate-950/80 backdrop-blur-md">
+    <footer className={`relative w-full border-t backdrop-blur-md ${
+      dark
+        ? "border-white/10 bg-slate-950/80"
+        : "border-slate-200 bg-white/80"
+    }`}>
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
 
-          {/* Logo / Nombre */}
           <div className="text-center md:text-left">
             <ShinyText
               text="Marcos Beteta"
               className="text-xl font-bold"
               speed={3}
-              color="#64748b"
+              color={dark ? "#64748b" : "#94a3b8"}
               shineColor="#22d3ee"
             />
-            <p className="text-slate-500 text-sm mt-2">
-              Desarrollador Full-Stack
+            <p className="text-slate-500 dark:text-slate-500 text-sm mt-2">
+              {t("footer.role")}
             </p>
           </div>
 
-          {/* Links de navegación */}
-          <div className="flex justify-center gap-6 text-sm">
+          <div className="flex justify-center gap-6 text-sm flex-wrap">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-slate-400 hover:text-cyan-400 transition-colors duration-300"
+                className={`transition-colors duration-300 ${
+                  dark
+                    ? "text-slate-400 hover:text-cyan-400"
+                    : "text-slate-500 hover:text-cyan-500"
+                }`}
               >
                 {link.name}
               </a>
             ))}
           </div>
 
-          {/* Redes sociales */}
           <div className="flex justify-center md:justify-end gap-4">
             {socialLinks.map((link) => {
               const IconComponent = link.icon;
@@ -59,7 +68,11 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="p-2.5 rounded-full border border-white/10 bg-slate-900/40 text-slate-400 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300"
+                  className={`p-2.5 rounded-full border transition-all duration-300 ${
+                    dark
+                      ? "border-white/10 bg-slate-900/40 text-slate-400 hover:text-cyan-400 hover:border-cyan-400/50"
+                      : "border-slate-200 bg-slate-100 text-slate-500 hover:text-cyan-500 hover:border-cyan-400/50"
+                  }`}
                 >
                   <IconComponent className="text-lg" />
                 </a>
@@ -69,10 +82,11 @@ function Footer() {
 
         </div>
 
-        {/* Separador */}
-        <div className="mt-8 pt-6 border-t border-white/5 text-center">
-          <p className="text-slate-600 text-xs">
-            &copy; {currentYear} Marcos Beteta. Todos los derechos reservados.
+        <div className={`mt-8 pt-6 border-t text-center ${
+          dark ? "border-white/5" : "border-slate-200"
+        }`}>
+          <p className="text-slate-500 dark:text-slate-600 text-xs">
+            &copy; {currentYear} Marcos Beteta. {t("footer.rights")}
           </p>
         </div>
       </div>

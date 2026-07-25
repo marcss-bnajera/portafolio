@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
@@ -7,7 +9,19 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #020617; /* bg-slate-950 */
+  background-color: #020617;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body,
+.dark {
+  background-color: #020617;
+}
+
+.light body,
+.light {
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
 /* StarBorder keyframes */

@@ -1,10 +1,17 @@
+import { useLanguage } from "../../../shared/context/LanguageContext";
+import { useTheme } from "../../../shared/context/ThemeContext";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 function ProjectCard({ project }) {
-  return (
-    <div className="group relative rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+  const { dark } = useTheme();
 
-      {/* Imagen del proyecto */}
+  return (
+    <div className={`group relative rounded-2xl border backdrop-blur-md overflow-hidden hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)] ${
+      dark
+        ? "border-white/10 bg-slate-900/40"
+        : "border-slate-200 bg-white/60"
+    }`}>
+
       {project.image && (
         <div className="relative h-48 overflow-hidden">
           <img
@@ -16,17 +23,15 @@ function ProjectCard({ project }) {
         </div>
       )}
 
-      {/* Contenido */}
       <div className="p-6 space-y-4">
-        <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors">
           {project.title}
         </h3>
 
-        <p className="text-slate-400 text-sm leading-relaxed">
+        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
           {project.description}
         </p>
 
-        {/* Tags */}
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <span
@@ -38,17 +43,20 @@ function ProjectCard({ project }) {
           ))}
         </div>
 
-        {/* Links */}
         <div className="flex items-center gap-3 pt-2">
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border border-white/10 bg-slate-800/60 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-400 transition-all duration-300"
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-300 ${
+                dark
+                  ? "border-white/10 bg-slate-800/60 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-400"
+                  : "border-slate-200 bg-slate-100 text-slate-600 hover:border-cyan-400/50 hover:text-cyan-500"
+              }`}
             >
               <FaGithub className="text-base" />
-              Código
+              <ProjectLinks />
             </a>
           )}
           {project.demo && (
@@ -59,13 +67,17 @@ function ProjectCard({ project }) {
               className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border border-cyan-400/30 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400/20 transition-all duration-300"
             >
               <FaExternalLinkAlt className="text-base" />
-              Demo
             </a>
           )}
         </div>
       </div>
     </div>
   );
+}
+
+function ProjectLinks() {
+  const { t } = useLanguage();
+  return <>{t("projects.viewCode")}</>;
 }
 
 export default ProjectCard;
