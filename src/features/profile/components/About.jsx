@@ -1,6 +1,6 @@
 import AnimatedContent from "../../../shared/components/ui/AnimatedContent";
 import SpotlightCard from "../../../shared/components/ui/SpotlightCard";
-import { FaUsers, FaLightbulb, FaRocket, FaCode } from "react-icons/fa";
+import { FaUsers, FaLightbulb, FaRocket } from "react-icons/fa";
 import { useLanguage } from "../../../shared/context/LanguageContext";
 
 function About() {
@@ -10,7 +10,6 @@ function About() {
     { key: "teamwork", icon: FaUsers },
     { key: "problemSolving", icon: FaLightbulb },
     { key: "proactivity", icon: FaRocket },
-    { key: "cleanCode", icon: FaCode },
   ];
 
   return (
@@ -41,7 +40,7 @@ function About() {
         </div>
       </AnimatedContent>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
         {softSkills.map((skill) => {
           const IconComponent = skill.icon;
           const skillData = t(`about.skills.${skill.key}`);
