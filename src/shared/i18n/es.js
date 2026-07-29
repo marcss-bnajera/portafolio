@@ -1,6 +1,7 @@
 const es = {
   nav: {
     about: "Sobre mí",
+    experience: "Experiencia",
     projects: "Proyectos",
     contact: "Contacto",
   },
@@ -65,6 +66,24 @@ const es = {
       postman: "Postman",
     },
     learningList: ["TypeScript", "Nest.js", "Prisma ORM"],
+  },
+  experience: {
+    title: "Experiencia & Aprendizaje",
+    subtitle: "Mi trayectoria académica y formación profesional.",
+    items: [
+      {
+        period: "2024 — 2026",
+        title: "Técnico en Informática",
+        institution: "Fundación Kinal",
+        description: "Formación integral en desarrollo de software, desde fundamentos de programación hasta arquitecturas avanzadas de microservicios. Competencias en Java, Spring Boot, React, Node.js, .NET y bases de datos relacionales y no relacionales."
+      },
+      {
+        period: "Mayo 2026",
+        title: "Curso de Power BI",
+        institution: "Certificación Profesional",
+        description: "Curso intensivo de análisis de datos con Power BI, incluyendo modelado de datos, elaboración de dashboards interactivos y visualización de métricas clave para la toma de decisiones empresariales."
+      }
+    ]
   },
   projects: {
     title: "Proyectos",

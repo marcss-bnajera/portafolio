@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import ProfileSection from "../features/profile/components/ProfileSection";
+import Experience from "../features/profile/components/Experience";
 import Technologies from "../features/profile/components/Technologies";
 import Projects from "../features/projects/components/Projects";
 import Contact from "../features/contact/components/Contact";
@@ -33,6 +34,7 @@ function App() {
       <main className="relative z-10 w-full">
         <Navbar />
         <ProfileSection />
+        <Experience />
         <Technologies />
         <Projects />
         <Contact />
