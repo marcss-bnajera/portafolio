@@ -1,16 +1,9 @@
 import { useLanguage } from "../../../shared/context/LanguageContext";
-import { useTheme } from "../../../shared/context/ThemeContext";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 function ProjectCard({ project }) {
-  const { dark } = useTheme();
-
   return (
-    <div className={`group relative rounded-2xl border backdrop-blur-md overflow-hidden hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)] ${
-      dark
-        ? "border-white/10 bg-slate-900/40"
-        : "border-slate-200 bg-white/60"
-    }`}>
+    <div className="group relative rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden hover:border-cyan-400/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.1)]">
 
       {project.image && (
         <div className="relative h-48 overflow-hidden">
@@ -24,11 +17,11 @@ function ProjectCard({ project }) {
       )}
 
       <div className="p-6 space-y-4">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors">
+        <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
           {project.title}
         </h3>
 
-        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+        <p className="text-slate-400 text-sm leading-relaxed">
           {project.description}
         </p>
 
@@ -49,11 +42,7 @@ function ProjectCard({ project }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-300 ${
-                dark
-                  ? "border-white/10 bg-slate-800/60 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-400"
-                  : "border-slate-200 bg-slate-100 text-slate-600 hover:border-cyan-400/50 hover:text-cyan-500"
-              }`}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border border-white/10 bg-slate-800/60 text-slate-300 hover:border-cyan-400/50 hover:text-cyan-400 transition-all duration-300"
             >
               <FaGithub className="text-base" />
               <ProjectLinks />

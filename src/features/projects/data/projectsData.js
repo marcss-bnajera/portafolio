@@ -1,3 +1,5 @@
+import novapayImg from "../../../assets/novapayImg/novapay1.png";
+
 export const projects = [
   {
     id: 1,
@@ -6,7 +8,7 @@ export const projects = [
     tags: ["React", "JavaScript", "Node.js", "PostgreSQL", "Docker", "Microservicios", "EXPO", ".NET", "C#"],
     github: "https://github.com/marcss-bnajera/NovaPay",
     demo: null,
-    image: null
+    image: novapayImg
   },
   // TIP: Agrega más proyectos aquí con el siguiente formato:
   // {
