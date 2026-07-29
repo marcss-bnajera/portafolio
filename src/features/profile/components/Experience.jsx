@@ -51,7 +51,7 @@ function Experience() {
                   <div className="hidden md:block md:w-1/2" />
 
                   {/* Card */}
-                  <div className={`md:w-1/2 pl-12 md:pl-0 ${isLeft ? "md:pr-10" : "md:pl-10"}`}>
+                  <div className={`md:w-1/2 pl-12 md:pl-0 ${isLeft ? "md:pr-16" : "md:pl-16"}`}>
                     <div className="p-5 rounded-2xl border border-white/10 bg-slate-900/60 backdrop-blur-md hover:border-cyan-400/40 transition-all duration-300">
 
                       <div className="flex items-center gap-3 mb-3">
