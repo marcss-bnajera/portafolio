@@ -13,17 +13,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark body,
-.dark {
-  background-color: #020617;
-}
-
-.light body,
-.light {
-  background-color: #e2e8f0;
-  color: #0f172a;
-}
-
 /* StarBorder keyframes */
 @keyframes star-movement-bottom {
   0% {
